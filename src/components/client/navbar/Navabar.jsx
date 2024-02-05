@@ -23,7 +23,7 @@ function Navabar() {
 		}, 5000);
 	}
 	return (
-		<div className="bg-black flex justify-between sticky top-0 p-4 items-center">
+		<div className="bg-black z-50 flex justify-between sticky top-0 p-4 items-center">
 			<h1 className="text-2xl uppercase font-extrabold text-white cursor-pointer hover:scale-105 duration-300">
 				logo
 			</h1>
