@@ -4,6 +4,7 @@ import AbouPage from "../pages/client/AbouPage";
 import ContactPage from "../pages/client/ContactPage";
 import SupportPage from "../pages/client/SupportPage";
 import ProductsPage from "../pages/client/ProductsPage";
+import ProductDetailsPage from "../pages/client/ProductDetailsPage";
 
 function UserRouter() {
 	return (
@@ -13,6 +14,7 @@ function UserRouter() {
 			<Route path="contact" element={<ContactPage />} />
 			<Route path="support" element={<SupportPage />} />
 			<Route path="products" element={<ProductsPage />} />
+			<Route path="product/:id" element={<ProductDetailsPage />} />
 		</Routes>
 	);
 }

@@ -32,28 +32,28 @@ function Products() {
 		content = (
 			<div>
 				<div className="grid grid-cols-4 gap-5 p-10">
-					{products.map((produt, i) => {
+					{products.map((product, i) => {
 						return (
 							<div
 								key={i}
-								onClick={() => navigate()}
+								onClick={() => navigate(`/product/${product.id}`)}
 								className="w-72 bg-white cursor-pointer shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
 							>
 								<img
-									src={produt.thumbnail}
+									src={product.thumbnail}
 									alt="Product"
 									className="h-80 w-72 object-cover rounded-t-xl"
 								/>
 								<div className="px-4 py-3 w-72">
 									<span className="text-gray-400 mr-3 uppercase text-xs">
-										{produt.brand}
+										{product.brand}
 									</span>
 									<p className="text-lg font-bold text-black truncate block capitalize">
-										{produt.title}
+										{product.title}
 									</p>
 									<div className="flex items-center">
 										<p className="text-lg font-semibold text-black cursor-auto my-3">
-											{produt.price}
+											{product.price}
 										</p>
 										<del>
 											<p className="text-sm text-gray-600 cursor-auto ml-2">$199</p>
