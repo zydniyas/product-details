@@ -7,9 +7,14 @@ function Products() {
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
+	const [categories, setCategories] = useState([]);
+	const [category, setCategory] = useState("");
 
 	useEffect(() => {
 		setLoading(true);
+		axios
+			.get("https://dummyjson.com/products/categories")
+			.then(res => setCategories(res.data));
 		axios
 			.get("https://dummyjson.com/products")
 			.then(res => {
@@ -21,7 +26,12 @@ function Products() {
 				setLoading(false);
 			});
 	}, []);
-
+	useEffect(() => {
+		axios
+			.get(`https://dummyjson.com/products/category/${category}`)
+			.then(res => setProducts(res.data.products));
+	}, [category]);
+	console.log(category);
 	let content;
 	if (loading) {
 		content = (
@@ -36,6 +46,13 @@ function Products() {
 	} else if (products) {
 		content = (
 			<div>
+				<select id="lang" onChange={e => setCategory(e.target.value)}>
+					{categories.map((category, i) => (
+						<option key={i} value={category}>
+							{category}
+						</option>
+					))}
+				</select>
 				<div className="flex flex-wrap justify-center gap-10 p-10 bg-gray-100 dark:bg-gray-800">
 					{products.map((product, i) => {
 						return (
