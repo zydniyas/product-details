@@ -8,30 +8,39 @@ function Products() {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
 	const [categories, setCategories] = useState([]);
-	const [category, setCategory] = useState("");
+	const [category, setCategory] = useState("all products");
+
+	useEffect(() => {
+		axios
+			.get("https://dummyjson.com/products/categories")
+			.then(res => setCategories(["all products", ...res.data]))
+			.catch(err => console.log(err));
+	}, []);
 
 	useEffect(() => {
 		setLoading(true);
-		axios
-			.get("https://dummyjson.com/products/categories")
-			.then(res => setCategories(res.data));
-		axios
-			.get("https://dummyjson.com/products")
-			.then(res => {
-				setProducts(res.data.products);
-				setLoading(false);
-			})
-			.catch(err => {
-				setError(err.message);
-				setLoading(false);
-			});
-	}, []);
-	useEffect(() => {
-		axios
-			.get(`https://dummyjson.com/products/category/${category}`)
-			.then(res => setProducts(res.data.products));
+		if (category === "all products") {
+			axios
+				.get("https://dummyjson.com/products")
+				.then(res => {
+					setProducts(res.data.products);
+					setLoading(false);
+				})
+				.catch(err => {
+					setError(err.message);
+					setLoading(false);
+				});
+		} else {
+			axios
+				.get(`https://dummyjson.com/products/category/${category}`)
+				.then(res => {
+					setProducts(res.data.products);
+					setLoading(false);
+				})
+				.catch(err => console.log(err));
+		}
 	}, [category]);
-	console.log(category);
+
 	let content;
 	if (loading) {
 		content = (
@@ -46,10 +55,10 @@ function Products() {
 	} else if (products) {
 		content = (
 			<div>
-				<select id="lang" onChange={e => setCategory(e.target.value)}>
-					{categories.map((category, i) => (
-						<option key={i} value={category}>
-							{category}
+				<select value={category} onChange={e => setCategory(e.target.value)}>
+					{categories.map((ctgry, i) => (
+						<option key={i} value={ctgry}>
+							{ctgry}
 						</option>
 					))}
 				</select>
