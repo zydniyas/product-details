@@ -63,7 +63,7 @@ function Signup() {
         <div className="flex justify-between text-sm">
           <p>Don't have an account?</p>
           <span
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/log-in")}
             className="text-blue-500 underline cursor-pointer"
           >
             Login
