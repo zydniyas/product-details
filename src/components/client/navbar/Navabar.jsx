@@ -67,22 +67,11 @@ function Navabar() {
             })}
           </ul>
           {user ? (
-            <div
-              onClick={() => setUser(null)}
-              className={`${
-                loading
-                  ? "hidden"
-                  : "w-10 h-10 bg-white rounded-full cursor-pointer"
-              } `}
-            ></div>
+            <div className="w-10 h-10 bg-white rounded-full cursor-pointer"></div>
           ) : (
             <button
-              onClick={() => login()}
-              className={`${
-                loading
-                  ? "hidden"
-                  : "bg-white rounded px-6 py-2 uppercase font-bold hover:bg-black text-black border hover:border-white hover:text-white duration-300"
-              } `}
+              onClick={() => navigate("/log-in")}
+              className="bg-white rounded px-6 py-2 uppercase font-bold hover:bg-black text-black border hover:border-white hover:text-white duration-300"
             >
               login
             </button>
