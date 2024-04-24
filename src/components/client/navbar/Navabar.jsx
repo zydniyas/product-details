@@ -67,7 +67,18 @@ function Navabar() {
             })}
           </ul>
           {user ? (
-            <div className="w-10 h-10 bg-white rounded-full cursor-pointer"></div>
+            <div className="group relative">
+              <img
+                src="https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250"
+                className="w-10 h-10 bg-white rounded-full cursor-pointer"
+              />
+              <button
+                onClick={() => setUser(null)}
+                className="group-hover:block hidden absolute top-full right-0 bg-black p-2 rounded"
+              >
+                logout
+              </button>
+            </div>
           ) : (
             <button
               onClick={() => navigate("/log-in")}
